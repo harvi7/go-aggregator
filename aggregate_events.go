@@ -32,6 +32,7 @@ func aggregateEvents(inputFile string, outputFile string, update bool) {
 
 	aggregatedData := make(AggregatedData)
 
+	// iterate through the events and add entries to the aggregatedData
 	for _, event := range events {
 		timestamp := time.Unix(event.Timestamp, 0).UTC().Format("2006-01-02")
 
@@ -48,6 +49,7 @@ func aggregateEvents(inputFile string, outputFile string, update bool) {
 
 	var result []map[string]interface{}
 
+	// from the aggregatedData add each entry to result
 	for userID, userData := range aggregatedData {
 		for timestamp, eventTypes := range userData {
 			entry := map[string]interface{}{"userId": userID, "date": timestamp}
